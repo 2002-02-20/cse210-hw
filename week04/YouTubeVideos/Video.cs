@@ -8,7 +8,7 @@ class Video
     private int _durationInSeconds;
     private List<VideoComment> _comments;
 
-    // Constructor para inicializar el video
+  
     public Video(string title, string author, int durationInSeconds)
     {
         _title = title;
@@ -17,7 +17,7 @@ class Video
         _comments = new List<VideoComment>();
     }
 
-    // Getters y Setters para acceder a los datos del video
+    
     public string GetTitle()
     {
         return _title;
@@ -48,25 +48,25 @@ class Video
         _durationInSeconds = duration;
     }
 
-    // Método para agregar un comentario al video
+    
     public void AddComment(VideoComment comment)
     {
         _comments.Add(comment);
     }
 
-    // Método para obtener el número de comentarios (como pedía la especificación)
+    
     public int GetNumberOfComments()
     {
         return _comments.Count;
     }
 
-    // Método para obtener la lista de comentarios
+   
     public List<VideoComment> GetComments()
     {
         return _comments;
     }
 
-    // Método para convertir segundos a formato mm:ss
+    
     private string FormatDuration()
     {
         int minutes = _durationInSeconds / 60;
@@ -74,7 +74,7 @@ class Video
         return $"{minutes}:{seconds:D2}";
     }
 
-    // Método para mostrar toda la información del video
+    
     public void DisplayVideoInfo()
     {
         Console.WriteLine($"Title: {GetTitle()}");
@@ -94,6 +94,6 @@ class Video
                 Console.WriteLine(comment.GetFormattedComment());
             }
         }
-        Console.WriteLine(); // Blank line to separate videos
+        Console.WriteLine(); 
     }
 }

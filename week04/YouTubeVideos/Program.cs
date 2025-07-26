@@ -6,7 +6,7 @@ class Program
     {
         Console.WriteLine("=== YOUTUBE VIDEO MONITORING SYSTEM ===\n");
 
-        // Create list to store videos
+    
         List<Video> videoList = new List<Video>();
 
         // Create Video 1
@@ -39,7 +39,7 @@ class Program
         video4.AddComment(new VideoComment("Daniel Rodriguez", "Thanks for the debugging tips."));
         videoList.Add(video4);
 
-        // Display information for all videos
+        
         Console.WriteLine($"Total videos in database: {videoList.Count}\n");
         
         int videoCounter = 1;
