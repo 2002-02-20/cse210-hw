@@ -1,9 +1,10 @@
 using System;
+using System.Collections.Generic;
 
 class ReflectingActivity : Activity
 {
-    public Random _random = new Random();
-    public List<string> _prompts = new List<string>()
+    private Random _random = new Random(); 
+    private List<string> _prompts = new List<string>() 
     {
         "Think of a time when you stood up for someone else.",
         "Think of a time when you did something really difficult.",
@@ -11,7 +12,7 @@ class ReflectingActivity : Activity
         "Think of a time when you did something truly selfless."
     };
 
-    public List<string> _questions = new List<string>()
+    private List<string> _questions = new List<string>() 
     {
         "Why was this experience meaningful to you?",
         "Have you ever done anything like this before?",
@@ -24,13 +25,17 @@ class ReflectingActivity : Activity
         "How can you keep this experience in mind in the future?"
     };
 
-    public ReflectingActivity(string name, string description, int duration) : base(name, description, duration)
+    public ReflectingActivity() : base("Reflection Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.")
     {
-
+        
     }
 
     public void Run()
     {
+        DisplayStartingMessage();
+        DisplayPrompt();
+        DisplayQuestions();
+        DisplayEndingMessage();
     }
 
     public string GetRandomPrompt()
@@ -38,17 +43,37 @@ class ReflectingActivity : Activity
         int index = _random.Next(_prompts.Count);
         return _prompts[index];
     }
+
     public string GetRandomQuestion()
     {
         int index = _random.Next(_questions.Count);
         return _questions[index];
     }
+
     public void DisplayPrompt()
     {
-
+        Console.WriteLine("Consider the following prompt:");
+        Console.WriteLine();
+        Console.WriteLine($"--- {GetRandomPrompt()} ---");
+        Console.WriteLine();
+        Console.WriteLine("When you have something in mind, press enter to continue.");
+        Console.ReadLine();
     }
+
     public void DisplayQuestions()
     {
+        Console.WriteLine("Now ponder on each of the following questions as they related to this experience.");
+        Console.Write("You may begin in: ");
+        ShowCountDown(5);
+        Console.Clear();
 
+        DateTime endTime = DateTime.Now.AddSeconds(_duration);
+        
+        while (DateTime.Now < endTime)
+        {
+            Console.Write($"> {GetRandomQuestion()} ");
+            ShowSpinner(15);
+            Console.WriteLine();
+        }
     }
 }

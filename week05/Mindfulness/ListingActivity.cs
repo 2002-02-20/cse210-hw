@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 class ListingActivity : Activity
 {
@@ -17,26 +18,50 @@ class ListingActivity : Activity
         return _count;
     }
 
-    public ListingActivity(int count, string prompts, string name, string description, int duration) : base(name, description, duration)
+    public ListingActivity() : base("Listing Activity", "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.")
     {
-        _count = count;
+        _count = 0;
 
     }
 
     public void Run()
     {
+        DisplayStartingMessage();
+        
+        Console.WriteLine("List as many things as you can think of for the following prompt:");
+        Console.WriteLine();
+        Console.WriteLine($"--- {GetRandomPrompt()} ---");
+        Console.WriteLine();
+        Console.Write("You may begin in: ");
+        ShowCountDown(5);
+        Console.WriteLine();
 
+        DateTime endTime = DateTime.Now.AddSeconds(_duration);
+        _count = 0;
+        
+        while (DateTime.Now < endTime)
+        {
+            Console.Write("> ");
+            string input = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(input))
+            {
+                _count++;
+            }
+        }
+        
+        Console.WriteLine($"You listed {_count} items!");
+        DisplayEndingMessage();
     }
 
-    public void GetRandomPrompt()
+    public string GetRandomPrompt()
     {
-
+        int index = _random.Next(_prompts.Count);
+        return _prompts[index];
     }
 
     public string GetListFromUser()
     {
-        int index = _random.Next(_prompts.Count);
-        return _prompts[index];
+        return GetRandomPrompt();
     }
 
 }
