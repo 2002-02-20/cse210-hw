@@ -26,17 +26,5 @@ class Program
             shapeNumber++;
         };
 
-/*
-                        Console.WriteLine(square1.GetColor());
-                        Console.WriteLine(square1.GetArea());
-
-
-                        Console.WriteLine(rectangle1.GetColor());
-                        Console.WriteLine(rectangle1.GetArea());
-
-                         Circle circle = new Circle("azul", 6);
-                        Console.WriteLine(circle.GetColor());
-                        Console.WriteLine(circle.GetArea());
-                        */
     }
 }
